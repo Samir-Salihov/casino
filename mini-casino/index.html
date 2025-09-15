@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>🍀 Mini Casino — Слоты</title>
+  <link rel="stylesheet" href="./src/styles/index.css" />
+</head>
+<body>
+  <header class="app-header">
+    <nav class="nav">
+      <a class="nav__logo" href="index.html" aria-label="На главную">🍀 Mini Casino</a>
+      <ul class="nav__links">
+        <li><a href="index.html" aria-current="page">Слоты</a></li>
+        <li><a href="blackjack.html">Blackjack</a></li>
+        <li><a href="dice.html">Dice</a></li>
+        <li><a href="diamonds.html">Diamonds</a></li>
+        <li><a href="about.html">О проекте</a></li>
+      </ul>
+
+      <!-- Переключатель темы -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Сменить тему">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <h1 class="card__title">Слот-машина</h1>
+
+      <div class="panel">
+        <div class="panel__item">
+          <div class="label">Баланс</div>
+          <div class="value" id="balance" aria-live="polite">—</div>
+        </div>
+        <div class="panel__item">
+          <label class="label" for="bet">Ставка</label>
+          <div class="bet">
+            <button class="btn btn--ghost" id="bet-dec" aria-label="Уменьшить ставку">−</button>
+            <input id="bet" class="bet__input" type="number" min="1" step="10" value="10" inputmode="numeric" />
+            <button class="btn btn--ghost" id="bet-inc" aria-label="Увеличить ставку">+</button>
+          </div>
+        </div>
+        <div class="panel__item">
+          <div class="label">Последний выигрыш</div>
+          <div class="value" id="lastWin">0</div>
+        </div>
+      </div>
+
+      <div class="slot" role="group" aria-label="Барабаны слота">
+        <div class="reel" id="reel-1" aria-live="polite" aria-label="Барабан 1">🍒</div>
+        <div class="reel" id="reel-2" aria-live="polite" aria-label="Барабан 2">🍒</div>
+        <div class="reel" id="reel-3" aria-live="polite" aria-label="Барабан 3">🍒</div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--primary" id="spin">Крутить (Space)</button>
+        <button class="btn" id="max-bet">Max</button>
+        <button class="btn btn--danger" id="reset">Сбросить прогресс</button>
+      </div>
+
+      <details class="payouts">
+        <summary>Таблица выплат</summary>
+        <div class="payouts__grid">
+          <div>💎 💎 💎</div><div>×50</div>
+          <div>7️⃣ 7️⃣ 7️⃣</div><div>×20</div>
+          <div>⭐ ⭐ ⭐</div><div>×7</div>
+          <div>🍒 🍒 🍒</div><div>×5</div>
+          <div>🍋 🍋 🍋</div><div>×4</div>
+          <div>Любые две одинаковые</div><div>×1</div>
+        </div>
+      </details>
+    </section>
+
+    <!-- НОВОЕ: Таймер / Секундомер -->
+    <section class="card timer-card" id="timer-card">
+      <div class="timer-header">
+        <h2 class="card__title">⏱ Таймер / Секундомер</h2>
+        <div class="timer-tabs" role="tablist" aria-label="Режимы">
+          <button class="tab is-active" data-mode="timer" role="tab" aria-selected="true">Таймер</button>
+          <button class="tab" data-mode="stopwatch" role="tab" aria-selected="false">Секундомер</button>
+        </div>
+      </div>
+
+      <div class="timer-widget">
+        <div class="display-wrap">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="ring-bg" cx="60" cy="60" r="54"></circle>
+            <circle class="ring-fg" cx="60" cy="60" r="54"></circle>
+          </svg>
+          <div class="display" aria-live="polite">
+            <span class="digits" id="tw-digits">00:00</span>
+            <span class="millis" id="tw-millis">.0</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="timer-inputs" id="tw-inputs">
+            <label>Мин
+              <input id="tw-min" type="number" min="0" max="999" value="0" inputmode="numeric">
+            </label>
+            <label>Сек
+              <input id="tw-sec" type="number" min="0" max="59" value="30" inputmode="numeric">
+            </label>
+            <button class="btn btn--ghost" id="tw-set-1">1:00</button>
+            <button class="btn btn--ghost" id="tw-set-5">5:00</button>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn--primary" id="tw-start">Старт</button>
+            <button class="btn" id="tw-pause" disabled>Пауза</button>
+            <button class="btn btn--danger" id="tw-reset" disabled>Сброс</button>
+            <button class="btn" id="tw-lap" disabled title="Круг (для секундомера)">Круг</button>
+          </div>
+        </div>
+
+        <div class="laps" id="tw-laps" hidden>
+          <div class="laps-head">
+            <span>#</span><span>Время круга</span><span>Суммарно</span>
+          </div>
+          <div class="laps-body" id="tw-laps-body"></div>
+          <button class="btn btn--ghost small" id="tw-clear-laps" disabled>Очистить круги</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2 class="card__title">История</h2>
+      <ul id="history" class="history" aria-live="polite"></ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Демо-проект. Игровая валюта — виртуальная.</p>
+  </footer>
+
+  <!-- ТВОИ СКРИПТЫ -->
+  <script src="./src/core/app.js"></script>
+  <script src="./src/games/slots/index.js"></script>
+
+  <!-- НОВОЕ: переключение темы + таймер/секундомер -->
+  <script src="./src/core/theme.js"></script>
+  <script src="./src/widgets/timer/index.js"></script>
+</body>
+</html>

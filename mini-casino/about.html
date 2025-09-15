@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>О проекте — 🍀 Mini Casino</title>
+  <link rel="stylesheet" href="./src//styles/index.css" />
+</head>
+<body>
+  <header class="app-header">
+    <nav class="nav">
+      <a class="nav__logo" href="index.html">🍀 Mini Casino</a>
+      <ul class="nav__links">
+        <li><a href="index.html">Слоты</a></li>
+        <li><a href="blackjack.html">Blackjack</a></li>
+        <li><a href="dice.html">Dice</a></li>
+        <li><a href="diamonds.html">Diamonds</a></li>
+
+        <li><a href="about.html" aria-current="page">О проекте</a></li>
+      </ul>
+
+      <button id="theme-toggle" class="theme-toggle" aria-label="Сменить тему">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <h1 class="card__title">О проекте</h1>
+      <p>Три мини-игры (Слоты, Blackjack, Dice) + сапёр <strong>Diamonds</strong>. Общий баланс и история в <code>localStorage</code>.</p>
+      <ul class="list">
+        <li>Начальный баланс: 1000 (виртуальная валюта)</li>
+        <li>Space: действие на экране игры (крутить/раздать/бросить/открыть)</li>
+        <li>Плавные переходы между страницами и общий модал банкротства</li>
+      </ul>
+      <a class="btn btn--primary" href="diamonds.html">Попробовать Diamonds</a>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Демо-проект. Игровая валюта — виртуальная.</p>
+  </footer>
+
+  <script src="./src//core//app.js"></script>
+
+  <script src="./src/core/theme.js"></script>
+</body>
+</html>

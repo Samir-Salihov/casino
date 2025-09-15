@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dice — 🍀 Mini Casino</title>
+  <link rel="stylesheet" href="./src/styles/index.css" />
+</head>
+<body>
+  <header class="app-header">
+    <nav class="nav">
+      <a class="nav__logo" href="index.html">🍀 Mini Casino</a>
+      <ul class="nav__links">
+        <li><a href="index.html">Слоты</a></li>
+        <li><a href="blackjack.html">Blackjack</a></li>
+        <li><a href="dice.html" aria-current="page">Dice</a></li>
+        <li><a href="diamonds.html">Diamonds</a></li>
+
+        <li><a href="about.html">О проекте</a></li>
+      </ul>
+
+      <button id="theme-toggle" class="theme-toggle" aria-label="Сменить тему">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <h1 class="card__title">Dice (Кости)</h1>
+
+      <div class="panel">
+        <div class="panel__item">
+          <div class="label">Баланс</div>
+          <div class="value" id="d-balance">—</div>
+        </div>
+        <div class="panel__item">
+          <label class="label" for="d-bet">Ставка</label>
+          <div class="bet">
+            <button class="btn btn--ghost" id="d-bet-dec">−</button>
+            <input id="d-bet" class="bet__input" type="number" min="10" step="10" value="20" />
+            <button class="btn btn--ghost" id="d-bet-inc">+</button>
+          </div>
+        </div>
+        <div class="panel__item">
+          <div class="label">Состояние</div>
+          <div class="value" id="d-status">Сделайте ставку и бросайте кости</div>
+        </div>
+      </div>
+
+      <div class="dice-area">
+        <div class="dice-row">
+          <div class="label">Игрок</div>
+          <div class="dice-pack">
+            <div class="die" id="p1">—</div>
+            <div class="die" id="p2">—</div>
+          </div>
+          <div class="dice-score" id="p-score">Сумма: —</div>
+        </div>
+        <div class="dice-row">
+          <div class="label">Дилер</div>
+          <div class="dice-pack">
+            <div class="die" id="d1">—</div>
+            <div class="die" id="d2">—</div>
+          </div>
+          <div class="dice-score" id="d-score">Сумма: —</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--primary" id="d-roll">Бросить (Space)</button>
+        <button class="btn" id="d-double" disabled>Риск ×2 (при победе)</button>
+        <button class="btn btn--danger" id="d-reset">Сбросить прогресс</button>
+      </div>
+
+      <details class="payouts">
+        <summary>Правила и выплаты</summary>
+        <ul class="list">
+          <li>Бросаете 2d6 против дилера. Выше сумма — победа, 1:1.</li>
+          <li>Двойные шестёрки у игрока: 3× (супер-выигрыш).</li>
+          <li>Ничья — возврат ставки.</li>
+          <li>Кнопка «Риск ×2» активна сразу после победы: второй бросок «ва-банк» (выигрыш удваивается, проигрыш — всё теряете).</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2 class="card__title">История Dice</h2>
+      <ul id="d-history" class="history"></ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Демо-проект. Игровая валюта — виртуальная. Баланс общий для всех игр.</p>
+  </footer>
+
+  <script src="./src//core/app.js"></script>
+  <script src="./src/games/dice/dice.js"></script>
+
+  <script src="./src/core/theme.js"></script>
+</body>
+</html>

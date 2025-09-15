@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diamonds — 🍀 Mini Casino</title>
+  <link rel="stylesheet" href="./src//styles//index.css" />
+</head>
+<body>
+  <header class="app-header">
+    <nav class="nav">
+      <a class="nav__logo" href="index.html">🍀 Mini Casino</a>
+      <ul class="nav__links">
+        <li><a href="index.html">Слоты</a></li>
+        <li><a href="blackjack.html">Blackjack</a></li>
+        <li><a href="dice.html">Dice</a></li>
+        <li><a href="diamonds.html" aria-current="page">Diamonds</a></li>
+
+        <li><a href="about.html">О проекте</a></li>
+      </ul>
+
+      <button id="theme-toggle" class="theme-toggle" aria-label="Сменить тему">
+        <span class="theme-toggle__icon" aria-hidden="true"></span>
+        <span class="sr-only"></span>
+      </button>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="card">
+      <h1 class="card__title">Diamonds (сапёр)</h1>
+
+      <div class="panel">
+        <div class="panel__item">
+          <div class="label">Баланс</div>
+          <div class="value" id="dm-balance">—</div>
+        </div>
+        <div class="panel__item">
+          <label class="label" for="dm-bet">Ставка</label>
+          <div class="bet">
+            <button class="btn btn--ghost" id="dm-bet-dec">−</button>
+            <input id="dm-bet" class="bet__input" type="number" min="10" step="10" value="30" />
+            <button class="btn btn--ghost" id="dm-bet-inc">+</button>
+          </div>
+        </div>
+        <div class="panel__item">
+          <div class="label">Состояние</div>
+          <div class="value" id="dm-status">Сделайте ставку и нажмите «Старт»</div>
+        </div>
+      </div>
+
+      <div class="diamonds-panel">
+        <button class="btn btn--primary" id="dm-start">Старт раунда</button>
+        <button class="btn" id="dm-flag">Флажок: выкл</button>
+        <span class="diamonds-legend">ЛКМ — открыть, ПКМ/кнопка — поставить флажок</span>
+      </div>
+
+      <div id="board" class="diamonds-board" hidden>
+        <div id="grid" class="diamonds-grid"></div>
+      </div>
+
+      <details class="payouts">
+        <summary>Правила и выплаты</summary>
+        <ul class="list">
+          <li>Поле 8×8, бомб: 10. Нажмите «Старт» — ставка списывается.</li>
+          <li>Откройте все безопасные клетки — победа (выплата ×3 от ставки).</li>
+          <li>Попали в бомбу — проигрыш (выплата 0).</li>
+          <li>Числа показывают, сколько бомб по соседству (как в сапёре).</li>
+        </ul>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2 class="card__title">История Diamonds</h2>
+      <ul id="dm-history" class="history"></ul>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <p>Демо-проект. Игровая валюта — виртуальная. Баланс общий для всех игр.</p>
+  </footer>
+
+  <script src="./src//core/app.js"></script>
+  <script src="./src//games/diamonds/diamonds.js"></script>
+
+  <script src="./src/core/theme.js"></script>
+</body>
+</html>
