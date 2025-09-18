@@ -325,3 +325,138 @@ html[data-theme="light"] .timer-inputs input{ background:#fff; }
   .millis{ font-size:18px; }
   .timer-inputs input{ width:72px; }
 }
+
+
+
+/* ===========================
+   ADAPTIVE / RESPONSIVE LAYER
+   (добавить в самый низ файла)
+   =========================== */
+
+/* Флюидная типографика и вертикальный ритм */
+html {
+  /* базовый размер шрифта: от 14px до 17px в зависимости от ширины */
+  font-size: clamp(14px, 1.2vw + 0.5rem, 17px);
+}
+.card__title {
+  font-size: clamp(18px, 1.3rem, 24px);
+}
+.digits {
+  font-size: clamp(28px, 6vw, 42px);
+}
+.millis {
+  font-size: clamp(16px, 3.2vw, 22px);
+}
+
+/* Контейнер и отступы страницы */
+.page {
+  max-width: min(1100px, 94vw);
+  padding-inline: clamp(12px, 3vw, 20px);
+  row-gap: clamp(14px, 2.4vw, 20px);
+}
+
+/* Навигация: на узких экранах — горизонтальный скролл со снапом */
+@media (max-width: 860px) {
+  .nav {
+    gap: 10px;
+  }
+  .nav__links {
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    padding-bottom: 4px;
+    gap: 10px;
+  }
+  .nav__links::-webkit-scrollbar { display: none; }
+  .nav__links a {
+    scroll-snap-align: start;
+  }
+}
+
+/* Сетка панели: 3 → 2 → 1 колонки по брейкпоинтам */
+@media (max-width: 1120px) {
+  .panel { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  .panel { grid-template-columns: 1fr; }
+}
+
+/* Слоты: гибкая высота и шрифт, 3→2→1 колонки на экстрамалых */
+.slot .reel {
+  /* вместо жёсткой высоты 120px — флюидная с верхним ограничением */
+  height: clamp(84px, 18vw, 120px);
+  font-size: clamp(34px, 9vw, 56px);
+}
+@media (max-width: 520px) {
+  .slot { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 360px) {
+  .slot { grid-template-columns: 1fr; }
+}
+
+/* История — чуть компактнее на маленьких */
+@media (max-width: 560px) {
+  .history li {
+    gap: 6px;
+    padding: 8px 10px;
+  }
+  .badge { font-size: 11px; padding: 3px 7px; }
+}
+
+/* Кнопки: комфортные тач-таргеты на маленьких */
+@media (max-width: 560px) {
+  .btn { padding: 9px 12px; border-radius: 10px; }
+  .actions { gap: 8px; }
+}
+
+/* Таймер / секундомер: флюидные размеры кольца и инпутов */
+.timer-card { margin-top: clamp(2px, 1vw, 6px); }
+.display-wrap {
+  width: min(320px, 72vw);
+}
+.timer-inputs input {
+  width: clamp(68px, 24vw, 84px);
+  padding: clamp(6px, 1.8vw, 8px);
+  font-size: clamp(14px, 1rem, 16px);
+}
+.timer-tabs .tab {
+  padding: clamp(6px, 1.2vw + 2px, 8px) clamp(10px, 2vw + 6px, 12px);
+}
+
+/* Ещё компактнее на очень малых */
+@media (max-width: 420px) {
+  .display { gap: 4px; }
+  .timer-tabs { gap: 6px; }
+}
+
+/* Узкая высота (ландшафт телефонов): уменьшаем вертикальные поля */
+@media (max-height: 520px) {
+  .app-header { position: static; } /* убираем липкость, экономим высоту */
+  .page { margin: 12px auto; }
+  .card { padding: 14px; }
+  .display-wrap { width: min(260px, 56vw); }
+}
+
+/* Очень большие экраны: чуть шире контейнер и комфортные кегли */
+@media (min-width: 1440px) {
+  .page { max-width: 1240px; }
+  .digits { font-size: 46px; }
+  .millis { font-size: 24px; }
+  .slot .reel { height: 128px; font-size: 60px; }
+}
+
+/* Анимации — уважение системных настроек */
+@media (prefers-reduced-motion: reduce) {
+  .route-veil--enter,
+  .route-veil--exit,
+  .route-enter .page,
+  .route-exit .page,
+  .die.shake,
+  .reel.spin {
+    animation: none !important;
+  }
+  .btn, .reel, .theme-toggle, .ring-fg {
+    transition: none !important;
+  }
+}
