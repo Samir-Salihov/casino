@@ -4,11 +4,6 @@
 
 <div align="center">
 
-![Casino Preview](https://img.shields.io/badge/Веб-Приложение-blue?style=for-the-badge)
-![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-
 **Полностью нативный код, без зависимостей, без фреймворков**
 
 [🎮 Демо](#) • [📋 Особенности](#особенности) • [🎲 Игры](#доступные-игры) • [🎨 Дизайн](#дизайн-система)
@@ -76,25 +71,6 @@
 animation: spin 1.2s cubic-bezier(.25,.6,.2,1) infinite
 ```
 
----
-
-## 📸 Скриншоты
-
-### 🎰 Главная страница с слот машиной
-
-<img src="https://i.imgur.com/9XZ7QwY.png" width="800" alt="Главная страница"/>
-
-### 🌙 Темная и светлая тема
-
-| 🌙 Темная тема | ☀️ Светлая тема |
-|---------------|-----------------|
-| <img src="https://i.imgur.com/3kfZ8xN.png" width="400" /> | <img src="https://i.imgur.com/BfYqL7C.png" width="400" /> |
-
-### ♠️ Игра Blackjack
-
-<img src="https://i.imgur.com/xL7zWdO.png" width="800" alt="Blackjack"/>
-
----
 
 ## 🚀 Как запустить
 
